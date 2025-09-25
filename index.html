@@ -1,106 +1,86 @@
-<!--
-  archivo: pagina_compartible.html
-  Instrucciones rápidas:
-  1) Guarda este archivo como `index.html` en tu ordenador.
-  2) Ábrelo con doble clic en cualquier navegador para verlo localmente.
-  3) Para compartirlo en la web: sube este `index.html` a GitHub (repo público) y activa GitHub Pages, o súbelo a Netlify/Vercel.
-  4) Edita el texto directamente en la página (el área es editable) o abre el archivo en un editor de texto (VS Code, Notepad++) para modificar el contenido.
-
-  Este archivo contiene:
-  - Una zona editable donde puedes escribir texto y formato básico.
-  - Botón para descargar la versión actual como archivo HTML.
-  - Botón "Compartir" que usa la Web Share API (si el navegador/dispositivo la soporta) para compartir el link o el texto.
--->
-
 <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mi página para compartir</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Romeo es el mejor</title>
   <style>
-    :root{--bg:#f7f7fb;--card:#ffffff;--accent:#4f46e5}
-    body{font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:var(--bg);margin:0;padding:40px;}
-    .container{max-width:900px;margin:0 auto;background:var(--card);padding:28px;border-radius:12px;box-shadow:0 6px 20px rgba(16,24,40,0.06)}
-    h1{margin:0 0 8px;color:var(--accent)}
-    p.lead{margin:0 0 18px;color:#334155}
-    .editable{min-height:160px;padding:16px;border-radius:8px;border:1px dashed #e2e8f0;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.01));outline:none}
-    .controls{display:flex;gap:8px;margin-top:16px}
-    button{background:var(--accent);color:white;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:600}
-    button.secondary{background:#eef2ff;color:var(--accent);border:1px solid #e0e7ff}
-    .note{margin-top:12px;color:#64748b;font-size:14px}
-    footer{margin-top:22px;color:#94a3b8}
-    @media (max-width:600px){body{padding:20px}}
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #fef6e4, #f1f5f9);
+      color: #1e293b;
+    }
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      background: #fde68a;
+      border-bottom: 4px solid #facc15;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      color: #b45309;
+    }
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+    img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .poema {
+      background: #fff;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #374151;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+    @media (max-width: 700px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1 contenteditable="false">Mi página para compartir</h1>
-    <p class="lead">Escribe aquí cualquier texto; tus amigos podrán verlo si subes este archivo a la web o les envías el archivo.</p>
+  <header>
+    <h1>Romeo es el mejor 🐾</h1>
+  </header>
 
-    <!-- Área editable: cambia el texto aquí en el navegador o en tu editor -->
-    <div id="contenido" class="editable" contenteditable="true" aria-label="Contenido editable">
-      <h2>Hola — ¡bienvenido!</h2>
-      <p>Esta es una página simple para compartir con amigos. Para editar, simplemente escribe sobre este texto. Puedes pegar imágenes, enlaces y usar formato básico (negrita, listas, etc.).</p>
-      <ul>
-        <li>Comparte ideas</li>
-        <li>Publica eventos</li>
-        <li>Guarda notas rápidas</li>
-      </ul>
+  <main>
+    <!-- Imagen: cámbiala por una foto real de Romeo -->
+    <img src="https://placedog.net/600/400?id=12" alt="Foto de Romeo">
+
+    <div class="poema">
+      <p>
+        Romeo, amigo fiel y tierno,<br>
+        tus ojos brillan como el cielo eterno.<br><br>
+        Con tu alegría llenas mi día,<br>
+        eres mi calma, mi compañía.<br><br>
+        Perro valiente, noble y sincero,<br>
+        en mi corazón siempre serás primero. ❤️
+      </p>
     </div>
+  </main>
 
-    <div class="controls">
-      <button id="downloadBtn">Descargar HTML</button>
-      <button id="shareBtn" class="secondary">Compartir (si está disponible)</button>
-      <button id="resetBtn" class="secondary">Restablecer contenido</button>
-    </div>
-
-    <p class="note">Sugerencia: guarda como <code>index.html</code> para que servicios como GitHub Pages lo muestren automáticamente.</p>
-
-    <footer>Creado con ♥ — edítalo y compártelo con tus amigos</footer>
-  </div>
-
-  <script>
-    const contenido = document.getElementById('contenido');
-    const downloadBtn = document.getElementById('downloadBtn');
-    const shareBtn = document.getElementById('shareBtn');
-    const resetBtn = document.getElementById('resetBtn');
-
-    const defaultHTML = contenido.innerHTML;
-
-    downloadBtn.addEventListener('click', ()=>{
-      const full = `<!doctype html>\n<html lang=\"es\">\n<head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Mi página compartida</title></head>\n<body>\n${contenido.innerHTML}\n</body>\n</html>`;
-      const blob = new Blob([full], {type: 'text/html'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = 'mi_pagina_compartida.html';
-      document.body.appendChild(a); a.click(); a.remove();
-      URL.revokeObjectURL(url);
-    });
-
-    shareBtn.addEventListener('click', async ()=>{
-      const text = contenido.innerText;
-      // Si el navegador soporta Web Share API, compartir texto
-      if(navigator.share){
-        try{
-          await navigator.share({title: document.title, text: text});
-        }catch(e){
-          alert('Compartir cancelado o no disponible.');
-        }
-      }else{
-        // Alternativa: copiar al portapapeles
-        try{
-          await navigator.clipboard.writeText(window.location.href + '\n\n' + text);
-          alert('Enlaces y texto copiados al portapapeles. Pega donde quieras.');
-        }catch(e){
-          alert('No se pudo usar el portapapeles. Descarga el HTML y compártelo manualmente.');
-        }
-      }
-    });
-
-    resetBtn.addEventListener('click', ()=>{
-      if(confirm('¿Quieres restablecer el contenido a la versión original?')) contenido.innerHTML = defaultHTML;
-    });
-  </script>
+  <footer>
+    Creado con cariño para Romeo — el mejor perro del mundo
+  </footer>
 </body>
 </html>
