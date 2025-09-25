@@ -23,15 +23,18 @@
       color: #b45309;
     }
     main {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 40px auto;
       padding: 20px;
+    }
+    .presentacion {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 30px;
       align-items: center;
+      margin-bottom: 50px;
     }
-    img {
+    .presentacion img {
       width: 100%;
       border-radius: 16px;
       box-shadow: 0 8px 16px rgba(0,0,0,0.1);
@@ -45,6 +48,22 @@
       line-height: 1.6;
       color: #374151;
     }
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .galeria img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .galeria img:hover {
+      transform: scale(1.05);
+    }
     footer {
       text-align: center;
       padding: 20px;
@@ -52,7 +71,7 @@
       color: #6b7280;
     }
     @media (max-width: 700px) {
-      main {
+      .presentacion {
         grid-template-columns: 1fr;
       }
     }
@@ -64,19 +83,30 @@
   </header>
 
   <main>
-    <!-- Imagen: cámbiala por una foto real de Romeo -->
-    <img src="https://placedog.net/600/400?id=12" alt="Foto de Romeo">
+    <section class="presentacion">
+      <!-- Imagen: cámbiala por una foto real de Romeo -->
+      <img src="https://placedog.net/600/400?id=12" alt="Foto de Romeo">
 
-    <div class="poema">
-      <p>
-        Romeo, amigo fiel y tierno,<br>
-        tus ojos brillan como el cielo eterno.<br><br>
-        Con tu alegría llenas mi día,<br>
-        eres mi calma, mi compañía.<br><br>
-        Perro valiente, noble y sincero,<br>
-        en mi corazón siempre serás primero. ❤️
-      </p>
-    </div>
+      <div class="poema">
+        <p>
+          Romeo, amigo fiel y tierno,<br>
+          tus ojos brillan como el cielo eterno.<br><br>
+          Con tu alegría llenas mi día,<br>
+          eres mi calma, mi compañía.<br><br>
+          Perro valiente, noble y sincero,<br>
+          en mi corazón siempre serás primero. ❤️
+        </p>
+      </div>
+    </section>
+
+    <h2 style="text-align:center; margin-bottom:20px;">📸 Galería de Romeo</h2>
+    <section class="galeria">
+      <!-- Sustituye estos enlaces por fotos reales -->
+      <img src="https://placedog.net/500/500?id=21" alt="Romeo jugando">
+      <img src="https://placedog.net/500/500?id=45" alt="Romeo descansando">
+      <img src="https://placedog.net/500/500?id=66" alt="Romeo en el parque">
+      <img src="https://placedog.net/500/500?id=89" alt="Romeo feliz">
+    </section>
   </main>
 
   <footer>
